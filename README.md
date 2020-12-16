@@ -53,12 +53,12 @@
 | column        | type       | options                      |
 | ------------- | ---------- | ---------------------------- |
 | postal_code   | string     | null:false                   |
+| prefecture_id | integer    | null:false                   |
 | city          | string     | null:false                   |
 | address       | string     | null:false                   |
 | bill          | string     |                              |
 | phone         | string     | null:false                   |
 | order         | references | null:false, foreign_key:true |
-| prefecture_id | integer    | null:false                   |
 
 ### Association
 
