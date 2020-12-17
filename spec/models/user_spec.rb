@@ -23,9 +23,15 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
       end
-      it "パスワード(文字)だけじゃ不可  " do
+      it "パスワード(数字)だけでは不可  " do
         @user.password = '000000'
         @user.password_confirmation = '000000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+      end
+      it "パスワード(文字)だけでは不可  " do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
       end
@@ -82,6 +88,31 @@ RSpec.describe User, type: :model do
         another_user.email = @user.email
         another_user.valid?
          expect(another_user.errors.full_messages).to include("Email has already been taken")
+      end
+      it 'first_nameが漢字・平仮名・カタカナ以外では登録できない' do
+        @user.first_name = 'aaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name is invalid')
+      end
+      it 'last_nameが漢字・平仮名・カタカナ以外では登録できない' do
+        @user.last_name = 'aaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name is invalid')
+      end
+      it 'first_name_kanaが全角カタカナ以外では登録できない' do
+        @user.first_name_kana = 'あいうえお'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
+      end
+      it 'last_name_kanaが全角カタカナ以外では登録できない' do
+        @user.last_name_kana = 'あいうえお'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name kana is invalid')
+      end
+      it 'emailで@がないと、登録ができない'do
+        @user.email = 'testnow'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
     end
   end
