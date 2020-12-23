@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
-  before do
-    @order_address = FactoryBot.build(:order_address)
-    user_id =  FactoryBot.build(:user)
-    item_id = FactoryBot.build(:item)
-  end
+before do
+  user = FactoryBot.create(:user)
+  item = FactoryBot.create(:item)
+  @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
+end
   context "商品購入ができる時" do
     it "全てあれば登録できる" do
       expect(@order_address).to be_valid
