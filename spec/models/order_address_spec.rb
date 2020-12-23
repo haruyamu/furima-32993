@@ -75,5 +75,10 @@ end
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Phone is invalid")
     end
+    it "11桁以内でないと登録できないこと" do
+      @order_address.phone = "111111111111"
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Phone is too long (maximum is 11 characters)")
+    end
   end
 end
