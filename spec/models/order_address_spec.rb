@@ -59,7 +59,7 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address.errors.full_messages).to include("Prefecture must be other than 1")
     end
     it "postal_codeに-がないと登録できない" do
-      @order_address.postal_code = 0000000
+      @order_address.postal_code = "0000000"
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Postal code is invalid")
     end
