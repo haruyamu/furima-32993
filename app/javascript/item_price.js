@@ -11,5 +11,5 @@ function price(){
       profit.innerHTML = profitCalc
     };
   });
-}
+};
 window.addEventListener('load', price);
