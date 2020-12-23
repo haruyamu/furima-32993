@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+   before_action :authenticate_user!
+   before_action :move_to_index
+   before_action :to_index
+
   def index
     @order_address = OrderAddress.new
     @item = Item.find(params[:item_id])
@@ -26,5 +30,16 @@ class OrdersController < ApplicationController
         amount: @item.price,
         currency: 'jpy'
       )
+  end
+  def move_to_index
+     @item = Item.find(params[:item_id])
+    if current_user.id = @item.user.id
+      redirect_to root_path
+    end
+  end
+  def to_index
+    if @item.order.exist?
+      redirect_to root_path
+    end
   end
 end
