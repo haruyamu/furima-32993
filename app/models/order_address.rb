@@ -11,14 +11,9 @@ class OrderAddress
   validates :token
   validates :address
   validates :phone, length: { maximum: 11 },format: {with: /\A[0-9]+\z/}
-  validates :prefecture_id, numericality: { other_than: 0}
+  validates :prefecture_id, numericality: { other_than: 1}
   end
-
-    extend ActiveHash::Associations::ActiveRecordExtensions
-  validates :prefecture_id,numericality: {other_than: 1}
-
     def save
-    
     order = Order.create(user_id: user_id, item_id: item_id)
     Address.create(postal_code: postal_code,city: city,address: address,prefecture_id: prefecture_id,phone: phone,bill: bill,order_id: order.id)
   end
