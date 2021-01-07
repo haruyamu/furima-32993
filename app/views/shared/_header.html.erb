@@ -11,8 +11,29 @@
   </div>
   <div class='nav'>
     <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
-      <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
+      <li><%= link_to 'カテゴリー', "#", class: "category-list",id: "category-list" %>
+        <ul class="show-lists hidden" id="pull-down">
+          <li><%= link_to  "レディース", "#" %></li>
+          <li><%= link_to  "メンズ", "#" %></li>
+          <li><%= link_to  "ベビー・キッズ", "#" %></li>
+          <li><%= link_to  "インテリア・すまい", "#" %></li>
+          <li><%= link_to  "本・おもちゃ・ホビー", "#" %></li>
+          <li><%= link_to  "家電・スマホ・カメラ", "#" %></li>
+          <li><%= link_to  "スポーツ・レジャー", "#" %></li>
+          <li><%= link_to  "ハンドメイド", "#" %></li>
+          <li><%= link_to  "その他", "#" %></li>
+        </ul>
+      </li>
+      <li><%= link_to 'ブランド', "#", class: "brand-list",id: "brand-list" %>
+        <ul class="show-lists hidden" id="pull-down2">
+          <li><%= link_to  "ナイキ", "#" %></li>
+          <li><%= link_to  "シャネル", "#" %></li>
+          <li><%= link_to  "ルイヴィトン", "#" %></li>
+          <li><%= link_to  "シュプリーム", "#" %></li>
+          <li><%= link_to  "アディダス", "#" %></li>
+          <li><%= link_to  "ブランド一覧", "#" %></li>
+        </ul>
+      </li>
     </ul>
     <ul class='lists-right'>
       <% if user_signed_in? %>
